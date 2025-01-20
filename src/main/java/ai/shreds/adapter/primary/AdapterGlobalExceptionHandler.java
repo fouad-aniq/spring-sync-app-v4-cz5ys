@@ -12,8 +12,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
-import javax.validation.ConstraintViolationException;
+import jakarta.validation.ConstraintViolationException;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
@@ -75,10 +74,10 @@ public class AdapterGlobalExceptionHandler {
         String details = e.getBindingResult().getFieldErrors().stream()
                 .map(error -> error.getField() + ": " + error.getDefaultMessage())
                 .collect(Collectors.joining(", "));
-        
+
         logger.warn("Invalid method arguments: {}", details, e);
         metadataOutputPort.reportError(e);
-        
+
         return ResponseEntity.badRequest().body(
             SharedErrorResponseDTO.withDetails(
                 HttpStatus.BAD_REQUEST.value(),

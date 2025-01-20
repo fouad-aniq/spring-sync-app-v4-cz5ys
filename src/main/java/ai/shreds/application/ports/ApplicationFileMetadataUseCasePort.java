@@ -3,8 +3,8 @@ package ai.shreds.application.ports;
 import ai.shreds.shared.dtos.*;
 import ai.shreds.application.exceptions.*;
 import io.swagger.v3.oas.annotations.Operation;
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import java.util.List;
 
 /**

@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.Instant;
 
@@ -16,7 +16,7 @@ import java.time.Instant;
 @Schema(description = "Response DTO for metadata creation or update operations")
 public class SharedCreateUpdateMetadataResponseDTO {
     @NotNull(message = "File ID cannot be null")
-    @Schema(description = "Unique identifier of the file", 
+    @Schema(description = "Unique identifier of the file",
            example = "123e4567-e89b-12d3-a456-426614174000")
     private String fileID;
 
@@ -47,8 +47,8 @@ public class SharedCreateUpdateMetadataResponseDTO {
     private boolean notificationsSent;
 
     public static SharedCreateUpdateMetadataResponseDTO success(
-            String fileID, 
-            SharedFileMetadataDTO metadata, 
+            String fileID,
+            SharedFileMetadataDTO metadata,
             SharedMetadataStatusEnum status,
             String operatedBy) {
         return SharedCreateUpdateMetadataResponseDTO.builder()
@@ -62,8 +62,8 @@ public class SharedCreateUpdateMetadataResponseDTO {
     }
 
     public static SharedCreateUpdateMetadataResponseDTO failure(
-            String fileID, 
-            String message, 
+            String fileID,
+            String message,
             String operatedBy) {
         return SharedCreateUpdateMetadataResponseDTO.builder()
                 .fileID(fileID)
@@ -75,8 +75,8 @@ public class SharedCreateUpdateMetadataResponseDTO {
     }
 
     public static SharedCreateUpdateMetadataResponseDTO conflict(
-            String fileID, 
-            String message, 
+            String fileID,
+            String message,
             SharedFileMetadataDTO conflictingMetadata) {
         return SharedCreateUpdateMetadataResponseDTO.builder()
                 .fileID(fileID)

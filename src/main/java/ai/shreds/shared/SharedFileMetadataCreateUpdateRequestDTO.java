@@ -4,9 +4,9 @@ import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Pattern;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
 import java.util.Map;
@@ -17,9 +17,9 @@ import java.util.Map;
 @AllArgsConstructor
 @Schema(description = "DTO for creating or updating file metadata")
 public class SharedFileMetadataCreateUpdateRequestDTO {
-    @Pattern(regexp = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", 
+    @Pattern(regexp = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
             message = "File ID must be a valid UUID when provided")
-    @Schema(description = "Unique identifier of the file (optional for creation)", 
+    @Schema(description = "Unique identifier of the file (optional for creation)",
            example = "123e4567-e89b-12d3-a456-426614174000")
     private String fileID;
 
@@ -30,21 +30,21 @@ public class SharedFileMetadataCreateUpdateRequestDTO {
 
     @NotBlank(message = "Checksum cannot be empty")
     @Pattern(regexp = "^[a-fA-F0-9]{32}$", message = "Checksum must be a valid MD5 hash")
-    @Schema(description = "File checksum for integrity verification", 
+    @Schema(description = "File checksum for integrity verification",
            example = "d41d8cd98f00b204e9800998ecf8427e")
     private String checksum;
 
-    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$", 
+    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
             message = "Creation timestamp must be in ISO-8601 format when provided")
     @Schema(description = "Timestamp when the file was created", example = "2023-01-01T10:00:00Z")
     private String creationTimestamp;
 
-    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$", 
+    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
             message = "Last modified timestamp must be in ISO-8601 format when provided")
     @Schema(description = "Timestamp when the file was last modified", example = "2023-01-01T10:00:00Z")
     private String lastModifiedTimestamp;
 
-    @Schema(description = "Details about file ownership", 
+    @Schema(description = "Details about file ownership",
            example = "{\"owner\": \"john.doe\", \"group\": \"finance\", \"permissions\": \"rw-r--r--\"}")
     private String ownershipDetails;
 
@@ -58,18 +58,18 @@ public class SharedFileMetadataCreateUpdateRequestDTO {
     @Schema(description = "MIME type of the file", example = "application/pdf")
     private String mimeType;
 
-    @Schema(description = "Tags associated with the file", 
+    @Schema(description = "Tags associated with the file",
            example = "[\"report\", \"2023\", \"financial\"]")
     private List<String> tags;
 
-    @Schema(description = "Additional metadata properties", 
+    @Schema(description = "Additional metadata properties",
            example = "{\"department\": \"finance\", \"classification\": \"confidential\"}")
     private Map<String, String> additionalProperties;
 
     @Schema(description = "User performing the operation", example = "john.doe")
     private String requestedBy;
 
-    @Schema(description = "Comment describing the change", 
+    @Schema(description = "Comment describing the change",
            example = "Updated financial report for Q4 2023")
     private String changeComment;
 
